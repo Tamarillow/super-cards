@@ -8,7 +8,7 @@ This is an R Markdown Notebook that works through the steps to create a digital 
 The first section of code creates an array that represents a fifty two card deck. 
 
 ```{r Create deck of cards}
-deck <- array(1:52, 12)
+deck <- array(NA, 52)
 houses <- list("Spades","Diamonds","Clubs","Hearts")
 card <- list("Ace of ", "Two of ", "Three of ", "Four of ", "Five of ", "Six of ", "Seven of ", "Eight of ", "Nine of ", "Ten of ", "Jack of ", "Queen of ", "King of ")
 
@@ -23,6 +23,30 @@ for (i in 1:4){
 deck
 
 ```
+
+The next section randomly deals cards between x players.
+
+```{r Deal Deck of Cards}
+player1 <- array(NA, 4)
+player2 <- array(NA, 4)
+
+randomnum <- floor(runif (1, min = 0, max = length(deck)))
+
+for (p in 1:4){
+  randomnum <- floor(runif (1, min = 0, max = length(deck)))
+  player1[p] <- deck[randomnum]
+  deck <- deck[-randomnum]
+  
+  randomnum <- floor(runif (1, min = 0, max = length(deck)))
+  player2[p] <- deck[randomnum]
+  deck <- deck[-randomnum]
+}
+
+player1
+player2
+deck
+```
+
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
 
