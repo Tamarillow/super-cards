@@ -281,50 +281,68 @@ deck</code></pre>
 <p>The next section randomly deals cards between x players.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxheWVyMSA8LSBhcnJheShOQSwgNClcbnBsYXllcjIgPC0gYXJyYXkoTkEsIDQpXG5yYW5kb21udW0gPC0gZmxvb3IocnVuaWYgKDEsIG1pbiA9IDAsIG1heCA9IGxlbmd0aChkZWNrKSkpXG5mb3IgKHAgaW4gMTo0KXtcbiAgcmFuZG9tbnVtIDwtIGZsb29yKHJ1bmlmICgxLCBtaW4gPSAwLCBtYXggPSBsZW5ndGgoZGVjaykpKVxuICBwbGF5ZXIxW3BdIDwtIGRlY2tbcmFuZG9tbnVtXVxuICBkZWNrIDwtIGRlY2tbLXJhbmRvbW51bV1cbiAgXG4gIHJhbmRvbW51bSA8LSBmbG9vcihydW5pZiAoMSwgbWluID0gMCwgbWF4ID0gbGVuZ3RoKGRlY2spKSlcbiAgcGxheWVyMltwXSA8LSBkZWNrW3JhbmRvbW51bV1cbiAgZGVjayA8LSBkZWNrWy1yYW5kb21udW1dXG59XG5wbGF5ZXIxXG5gYGAifQ== -->
-<pre class="r"><code>player1 &lt;- array(NA, 4)
-player2 &lt;- array(NA, 4)
-randomnum &lt;- floor(runif (1, min = 0, max = length(deck)))
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuSm8gPC0gYXJyYXkoTkEsIDQpXG5EYXZlIDwtIGFycmF5KE5BLCA0KVxuV2lsbCA8LSBhcnJheShOQSwgNClcbkFya2llIDwtIGFycmF5KE5BLCA0KVxucmFuZG9tbnVtIDwtIGZsb29yKHJ1bmlmICgxLCBtaW4gPSAxLCBtYXggPSBsZW5ndGgoZGVjaykpKVxuZm9yIChwIGluIDE6NCl7XG4gIHJhbmRvbW51bSA8LSBmbG9vcihydW5pZiAoMSwgbWluID0gMSwgbWF4ID0gbGVuZ3RoKGRlY2spKSlcbiAgQXJraWVbcF0gPC0gZGVja1tyYW5kb21udW1dXG4gIGRlY2sgPC0gZGVja1stcmFuZG9tbnVtXVxuICBcbiAgcmFuZG9tbnVtIDwtIGZsb29yKHJ1bmlmICgxLCBtaW4gPSAxLCBtYXggPSBsZW5ndGgoZGVjaykpKVxuICBEYXZlW3BdIDwtIGRlY2tbcmFuZG9tbnVtXVxuICBkZWNrIDwtIGRlY2tbLXJhbmRvbW51bV1cbiAgXG4gIHJhbmRvbW51bSA8LSBmbG9vcihydW5pZiAoMSwgbWluID0gMSwgbWF4ID0gbGVuZ3RoKGRlY2spKSlcbiAgV2lsbFtwXSA8LSBkZWNrW3JhbmRvbW51bV1cbiAgZGVjayA8LSBkZWNrWy1yYW5kb21udW1dXG4gIFxuICByYW5kb21udW0gPC0gZmxvb3IocnVuaWYgKDEsIG1pbiA9IDEsIG1heCA9IGxlbmd0aChkZWNrKSkpXG4gIEpvW3BdIDwtIGRlY2tbcmFuZG9tbnVtXVxuICBkZWNrIDwtIGRlY2tbLXJhbmRvbW51bV1cbn1cbkFya2llXG5gYGAifQ== -->
+<pre class="r"><code>Jo &lt;- array(NA, 4)
+Dave &lt;- array(NA, 4)
+Will &lt;- array(NA, 4)
+Arkie &lt;- array(NA, 4)
+randomnum &lt;- floor(runif (1, min = 1, max = length(deck)))
 for (p in 1:4){
-  randomnum &lt;- floor(runif (1, min = 0, max = length(deck)))
-  player1[p] &lt;- deck[randomnum]
+  randomnum &lt;- floor(runif (1, min = 1, max = length(deck)))
+  Arkie[p] &lt;- deck[randomnum]
   deck &lt;- deck[-randomnum]
   
-  randomnum &lt;- floor(runif (1, min = 0, max = length(deck)))
-  player2[p] &lt;- deck[randomnum]
+  randomnum &lt;- floor(runif (1, min = 1, max = length(deck)))
+  Dave[p] &lt;- deck[randomnum]
+  deck &lt;- deck[-randomnum]
+  
+  randomnum &lt;- floor(runif (1, min = 1, max = length(deck)))
+  Will[p] &lt;- deck[randomnum]
+  deck &lt;- deck[-randomnum]
+  
+  randomnum &lt;- floor(runif (1, min = 1, max = length(deck)))
+  Jo[p] &lt;- deck[randomnum]
   deck &lt;- deck[-randomnum]
 }
-player1</code></pre>
+Arkie</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU2V2ZW4gb2YgQ2x1YnNcIiAgICBcIktpbmcgb2YgRGlhbW9uZHNcIiAgXCJUZW4gb2YgQ2x1YnNcIiAgICAgXG5bNF0gXCJTZXZlbiBvZiBEaWFtb25kc1wiXG4ifQ== -->
-<pre><code>[1] &quot;Seven of Clubs&quot;    &quot;King of Diamonds&quot;  &quot;Ten of Clubs&quot;     
-[4] &quot;Seven of Diamonds&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU2V2ZW4gb2YgQ2x1YnNcIiAgXCJTZXZlbiBvZiBTcGFkZXNcIiBcIlF1ZWVuIG9mIEhlYXJ0c1wiIFwiS2luZyBvZiBTcGFkZXNcIiBcbiJ9 -->
+<pre><code>[1] &quot;Seven of Clubs&quot;  &quot;Seven of Spades&quot; &quot;Queen of Hearts&quot; &quot;King of Spades&quot; </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxheWVyMlxuYGBgIn0= -->
-<pre class="r"><code>player2</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRGF2ZVxuYGBgIn0= -->
+<pre class="r"><code>Dave</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRWlnaHQgb2YgQ2x1YnNcIiAgIFwiTmluZSBvZiBTcGFkZXNcIiAgIFwiSmFjayBvZiBEaWFtb25kc1wiIFwiRWlnaHQgb2YgSGVhcnRzXCIgXG4ifQ== -->
-<pre><code>[1] &quot;Eight of Clubs&quot;   &quot;Nine of Spades&quot;   &quot;Jack of Diamonds&quot; &quot;Eight of Hearts&quot; </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTmluZSBvZiBEaWFtb25kc1wiIFwiU2V2ZW4gb2YgSGVhcnRzXCIgIFwiTmluZSBvZiBDbHVic1wiICAgIFwiQWNlIG9mIFNwYWRlc1wiICAgXG4ifQ== -->
+<pre><code>[1] &quot;Nine of Diamonds&quot; &quot;Seven of Hearts&quot;  &quot;Nine of Clubs&quot;    &quot;Ace of Spades&quot;   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuSm9cbmBgYCJ9 -->
+<pre class="r"><code>Jo</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiUXVlZW4gb2YgU3BhZGVzXCIgXCJUd28gb2YgQ2x1YnNcIiAgICBcIkphY2sgb2YgU3BhZGVzXCIgIFwiTmluZSBvZiBTcGFkZXNcIiBcbiJ9 -->
+<pre><code>[1] &quot;Queen of Spades&quot; &quot;Two of Clubs&quot;    &quot;Jack of Spades&quot;  &quot;Nine of Spades&quot; </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuV2lsbFxuYGBgIn0= -->
+<pre class="r"><code>Will</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiS2luZyBvZiBDbHVic1wiICAgXCJTaXggb2YgQ2x1YnNcIiAgICBcIlRocmVlIG9mIEhlYXJ0c1wiIFwiRml2ZSBvZiBIZWFydHNcIiBcbiJ9 -->
+<pre><code>[1] &quot;King of Clubs&quot;   &quot;Six of Clubs&quot;    &quot;Three of Hearts&quot; &quot;Five of Hearts&quot; </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGVja1xuYGBgIn0= -->
 <pre class="r"><code>deck</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkFjZSBvZiBTcGFkZXNcIiAgICAgXCJUd28gb2YgU3BhZGVzXCIgICAgIFwiVGhyZWUgb2YgU3BhZGVzXCIgIFxuIFs0XSBcIkZvdXIgb2YgU3BhZGVzXCIgICAgXCJGaXZlIG9mIFNwYWRlc1wiICAgIFwiU2l4IG9mIFNwYWRlc1wiICAgIFxuIFs3XSBcIlNldmVuIG9mIFNwYWRlc1wiICAgXCJFaWdodCBvZiBTcGFkZXNcIiAgIFwiVGVuIG9mIFNwYWRlc1wiICAgIFxuWzEwXSBcIkphY2sgb2YgU3BhZGVzXCIgICAgXCJRdWVlbiBvZiBTcGFkZXNcIiAgIFwiS2luZyBvZiBTcGFkZXNcIiAgIFxuWzEzXSBcIkFjZSBvZiBEaWFtb25kc1wiICAgXCJUd28gb2YgRGlhbW9uZHNcIiAgIFwiVGhyZWUgb2YgRGlhbW9uZHNcIlxuWzE2XSBcIkZvdXIgb2YgRGlhbW9uZHNcIiAgXCJGaXZlIG9mIERpYW1vbmRzXCIgIFwiU2l4IG9mIERpYW1vbmRzXCIgIFxuWzE5XSBcIkVpZ2h0IG9mIERpYW1vbmRzXCIgXCJOaW5lIG9mIERpYW1vbmRzXCIgIFwiVGVuIG9mIERpYW1vbmRzXCIgIFxuWzIyXSBcIlF1ZWVuIG9mIERpYW1vbmRzXCIgXCJBY2Ugb2YgQ2x1YnNcIiAgICAgIFwiVHdvIG9mIENsdWJzXCIgICAgIFxuWzI1XSBcIlRocmVlIG9mIENsdWJzXCIgICAgXCJGb3VyIG9mIENsdWJzXCIgICAgIFwiRml2ZSBvZiBDbHVic1wiICAgIFxuWzI4XSBcIlNpeCBvZiBDbHVic1wiICAgICAgXCJOaW5lIG9mIENsdWJzXCIgICAgIFwiSmFjayBvZiBDbHVic1wiICAgIFxuWzMxXSBcIlF1ZWVuIG9mIENsdWJzXCIgICAgXCJLaW5nIG9mIENsdWJzXCIgICAgIFwiQWNlIG9mIEhlYXJ0c1wiICAgIFxuWzM0XSBcIlR3byBvZiBIZWFydHNcIiAgICAgXCJUaHJlZSBvZiBIZWFydHNcIiAgIFwiRm91ciBvZiBIZWFydHNcIiAgIFxuWzM3XSBcIkZpdmUgb2YgSGVhcnRzXCIgICAgXCJTaXggb2YgSGVhcnRzXCIgICAgIFwiU2V2ZW4gb2YgSGVhcnRzXCIgIFxuWzQwXSBcIk5pbmUgb2YgSGVhcnRzXCIgICAgXCJUZW4gb2YgSGVhcnRzXCIgICAgIFwiSmFjayBvZiBIZWFydHNcIiAgIFxuWzQzXSBcIlF1ZWVuIG9mIEhlYXJ0c1wiICAgXCJLaW5nIG9mIEhlYXJ0c1wiICAgXG4ifQ== -->
-<pre><code> [1] &quot;Ace of Spades&quot;     &quot;Two of Spades&quot;     &quot;Three of Spades&quot;  
- [4] &quot;Four of Spades&quot;    &quot;Five of Spades&quot;    &quot;Six of Spades&quot;    
- [7] &quot;Seven of Spades&quot;   &quot;Eight of Spades&quot;   &quot;Ten of Spades&quot;    
-[10] &quot;Jack of Spades&quot;    &quot;Queen of Spades&quot;   &quot;King of Spades&quot;   
-[13] &quot;Ace of Diamonds&quot;   &quot;Two of Diamonds&quot;   &quot;Three of Diamonds&quot;
-[16] &quot;Four of Diamonds&quot;  &quot;Five of Diamonds&quot;  &quot;Six of Diamonds&quot;  
-[19] &quot;Eight of Diamonds&quot; &quot;Nine of Diamonds&quot;  &quot;Ten of Diamonds&quot;  
-[22] &quot;Queen of Diamonds&quot; &quot;Ace of Clubs&quot;      &quot;Two of Clubs&quot;     
-[25] &quot;Three of Clubs&quot;    &quot;Four of Clubs&quot;     &quot;Five of Clubs&quot;    
-[28] &quot;Six of Clubs&quot;      &quot;Nine of Clubs&quot;     &quot;Jack of Clubs&quot;    
-[31] &quot;Queen of Clubs&quot;    &quot;King of Clubs&quot;     &quot;Ace of Hearts&quot;    
-[34] &quot;Two of Hearts&quot;     &quot;Three of Hearts&quot;   &quot;Four of Hearts&quot;   
-[37] &quot;Five of Hearts&quot;    &quot;Six of Hearts&quot;     &quot;Seven of Hearts&quot;  
-[40] &quot;Nine of Hearts&quot;    &quot;Ten of Hearts&quot;     &quot;Jack of Hearts&quot;   
-[43] &quot;Queen of Hearts&quot;   &quot;King of Hearts&quot;   </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIlR3byBvZiBTcGFkZXNcIiAgICAgXCJUaHJlZSBvZiBTcGFkZXNcIiAgIFwiRm91ciBvZiBTcGFkZXNcIiAgIFxuIFs0XSBcIkZpdmUgb2YgU3BhZGVzXCIgICAgXCJTaXggb2YgU3BhZGVzXCIgICAgIFwiRWlnaHQgb2YgU3BhZGVzXCIgIFxuIFs3XSBcIlRlbiBvZiBTcGFkZXNcIiAgICAgXCJBY2Ugb2YgRGlhbW9uZHNcIiAgIFwiVHdvIG9mIERpYW1vbmRzXCIgIFxuWzEwXSBcIlRocmVlIG9mIERpYW1vbmRzXCIgXCJGb3VyIG9mIERpYW1vbmRzXCIgIFwiRml2ZSBvZiBEaWFtb25kc1wiIFxuWzEzXSBcIlNpeCBvZiBEaWFtb25kc1wiICAgXCJTZXZlbiBvZiBEaWFtb25kc1wiIFwiRWlnaHQgb2YgRGlhbW9uZHNcIlxuWzE2XSBcIlRlbiBvZiBEaWFtb25kc1wiICAgXCJKYWNrIG9mIERpYW1vbmRzXCIgIFwiUXVlZW4gb2YgRGlhbW9uZHNcIlxuWzE5XSBcIktpbmcgb2YgRGlhbW9uZHNcIiAgXCJBY2Ugb2YgQ2x1YnNcIiAgICAgIFwiVGhyZWUgb2YgQ2x1YnNcIiAgIFxuWzIyXSBcIkZvdXIgb2YgQ2x1YnNcIiAgICAgXCJGaXZlIG9mIENsdWJzXCIgICAgIFwiRWlnaHQgb2YgQ2x1YnNcIiAgIFxuWzI1XSBcIlRlbiBvZiBDbHVic1wiICAgICAgXCJKYWNrIG9mIENsdWJzXCIgICAgIFwiUXVlZW4gb2YgQ2x1YnNcIiAgIFxuWzI4XSBcIkFjZSBvZiBIZWFydHNcIiAgICAgXCJUd28gb2YgSGVhcnRzXCIgICAgIFwiRm91ciBvZiBIZWFydHNcIiAgIFxuWzMxXSBcIlNpeCBvZiBIZWFydHNcIiAgICAgXCJFaWdodCBvZiBIZWFydHNcIiAgIFwiTmluZSBvZiBIZWFydHNcIiAgIFxuWzM0XSBcIlRlbiBvZiBIZWFydHNcIiAgICAgXCJKYWNrIG9mIEhlYXJ0c1wiICAgIFwiS2luZyBvZiBIZWFydHNcIiAgIFxuIn0= -->
+<pre><code> [1] &quot;Two of Spades&quot;     &quot;Three of Spades&quot;   &quot;Four of Spades&quot;   
+ [4] &quot;Five of Spades&quot;    &quot;Six of Spades&quot;     &quot;Eight of Spades&quot;  
+ [7] &quot;Ten of Spades&quot;     &quot;Ace of Diamonds&quot;   &quot;Two of Diamonds&quot;  
+[10] &quot;Three of Diamonds&quot; &quot;Four of Diamonds&quot;  &quot;Five of Diamonds&quot; 
+[13] &quot;Six of Diamonds&quot;   &quot;Seven of Diamonds&quot; &quot;Eight of Diamonds&quot;
+[16] &quot;Ten of Diamonds&quot;   &quot;Jack of Diamonds&quot;  &quot;Queen of Diamonds&quot;
+[19] &quot;King of Diamonds&quot;  &quot;Ace of Clubs&quot;      &quot;Three of Clubs&quot;   
+[22] &quot;Four of Clubs&quot;     &quot;Five of Clubs&quot;     &quot;Eight of Clubs&quot;   
+[25] &quot;Ten of Clubs&quot;      &quot;Jack of Clubs&quot;     &quot;Queen of Clubs&quot;   
+[28] &quot;Ace of Hearts&quot;     &quot;Two of Hearts&quot;     &quot;Four of Hearts&quot;   
+[31] &quot;Six of Hearts&quot;     &quot;Eight of Hearts&quot;   &quot;Nine of Hearts&quot;   
+[34] &quot;Ten of Hearts&quot;     &quot;Jack of Hearts&quot;    &quot;King of Hearts&quot;   </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -333,7 +351,7 @@ player1</code></pre>
 <p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGFtYWxvdyBDYXJkIEdhbWUiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClRoaXMgaXMgYW4gUiBNYXJrZG93biBOb3RlYm9vayB0aGF0IHdvcmtzIHRocm91Z2ggdGhlIHN0ZXBzIHRvIGNyZWF0ZSBhIGRpZ2l0YWwgdmVyc2lvbiBvZiB0aGUgY2FyZCBnYW1lIFRhbWFsb3cuICAKClRoZSBmaXJzdCBzZWN0aW9uIG9mIGNvZGUgY3JlYXRlcyBhbiBhcnJheSB0aGF0IHJlcHJlc2VudHMgYSBmaWZ0eSB0d28gY2FyZCBkZWNrLiAKCmBgYHtyIENyZWF0ZSBkZWNrIG9mIGNhcmRzfQpkZWNrIDwtIGFycmF5KE5BLCA1MikKaG91c2VzIDwtIGxpc3QoIlNwYWRlcyIsIkRpYW1vbmRzIiwiQ2x1YnMiLCJIZWFydHMiKQpjYXJkIDwtIGxpc3QoIkFjZSBvZiAiLCAiVHdvIG9mICIsICJUaHJlZSBvZiAiLCAiRm91ciBvZiAiLCAiRml2ZSBvZiAiLCAiU2l4IG9mICIsICJTZXZlbiBvZiAiLCAiRWlnaHQgb2YgIiwgIk5pbmUgb2YgIiwgIlRlbiBvZiAiLCAiSmFjayBvZiAiLCAiUXVlZW4gb2YgIiwgIktpbmcgb2YgIikKCnQgPC0gMApmb3IgKGkgaW4gMTo0KXsKICBmb3IoaiBpbiAxOjEzKXsKICAgIHQgPC0gdCsxCiAgICBkZWNrW3RdIDwtIHBhc3RlMChjYXJkW2pdLGhvdXNlc1tpXSkKICB9Cn0KCmRlY2sKCmBgYAoKVGhlIG5leHQgc2VjdGlvbiByYW5kb21seSBkZWFscyBjYXJkcyBiZXR3ZWVuIHggcGxheWVycy4KCmBgYHtyIERlYWwgRGVjayBvZiBDYXJkc30KcGxheWVyMSA8LSBhcnJheShOQSwgNCkKcGxheWVyMiA8LSBhcnJheShOQSwgNCkKCnJhbmRvbW51bSA8LSBmbG9vcihydW5pZiAoMSwgbWluID0gMCwgbWF4ID0gbGVuZ3RoKGRlY2spKSkKCmZvciAocCBpbiAxOjQpewogIHJhbmRvbW51bSA8LSBmbG9vcihydW5pZiAoMSwgbWluID0gMCwgbWF4ID0gbGVuZ3RoKGRlY2spKSkKICBwbGF5ZXIxW3BdIDwtIGRlY2tbcmFuZG9tbnVtXQogIGRlY2sgPC0gZGVja1stcmFuZG9tbnVtXQogIAogIHJhbmRvbW51bSA8LSBmbG9vcihydW5pZiAoMSwgbWluID0gMCwgbWF4ID0gbGVuZ3RoKGRlY2spKSkKICBwbGF5ZXIyW3BdIDwtIGRlY2tbcmFuZG9tbnVtXQogIGRlY2sgPC0gZGVja1stcmFuZG9tbnVtXQp9CgpwbGF5ZXIxCnBsYXllcjIKZGVjawpgYGAKCgpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ21kK09wdGlvbitJKi4KCldoZW4geW91IHNhdmUgdGhlIG5vdGVib29rLCBhbiBIVE1MIGZpbGUgY29udGFpbmluZyB0aGUgY29kZSBhbmQgb3V0cHV0IHdpbGwgYmUgc2F2ZWQgYWxvbmdzaWRlIGl0IChjbGljayB0aGUgKlByZXZpZXcqIGJ1dHRvbiBvciBwcmVzcyAqQ21kK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuIAoKVGhlIHByZXZpZXcgc2hvd3MgeW91IGEgcmVuZGVyZWQgSFRNTCBjb3B5IG9mIHRoZSBjb250ZW50cyBvZiB0aGUgZWRpdG9yLiBDb25zZXF1ZW50bHksIHVubGlrZSAqS25pdCosICpQcmV2aWV3KiBkb2VzIG5vdCBydW4gYW55IFIgY29kZSBjaHVua3MuIEluc3RlYWQsIHRoZSBvdXRwdXQgb2YgdGhlIGNodW5rIHdoZW4gaXQgd2FzIGxhc3QgcnVuIGluIHRoZSBlZGl0b3IgaXMgZGlzcGxheWVkLgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGFtYWxvdyBDYXJkIEdhbWUiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClRoaXMgaXMgYW4gUiBNYXJrZG93biBOb3RlYm9vayB0aGF0IHdvcmtzIHRocm91Z2ggdGhlIHN0ZXBzIHRvIGNyZWF0ZSBhIGRpZ2l0YWwgdmVyc2lvbiBvZiB0aGUgY2FyZCBnYW1lIFRhbWFsb3cuICAKClRoZSBmaXJzdCBzZWN0aW9uIG9mIGNvZGUgY3JlYXRlcyBhbiBhcnJheSB0aGF0IHJlcHJlc2VudHMgYSBmaWZ0eSB0d28gY2FyZCBkZWNrLiAKCmBgYHtyIENyZWF0ZSBkZWNrIG9mIGNhcmRzfQpkZWNrIDwtIGFycmF5KE5BLCA1MikKaG91c2VzIDwtIGxpc3QoIlNwYWRlcyIsIkRpYW1vbmRzIiwiQ2x1YnMiLCJIZWFydHMiKQpjYXJkIDwtIGxpc3QoIkFjZSBvZiAiLCAiVHdvIG9mICIsICJUaHJlZSBvZiAiLCAiRm91ciBvZiAiLCAiRml2ZSBvZiAiLCAiU2l4IG9mICIsICJTZXZlbiBvZiAiLCAiRWlnaHQgb2YgIiwgIk5pbmUgb2YgIiwgIlRlbiBvZiAiLCAiSmFjayBvZiAiLCAiUXVlZW4gb2YgIiwgIktpbmcgb2YgIikKCnQgPC0gMApmb3IgKGkgaW4gMTo0KXsKICBmb3IoaiBpbiAxOjEzKXsKICAgIHQgPC0gdCsxCiAgICBkZWNrW3RdIDwtIHBhc3RlMChjYXJkW2pdLGhvdXNlc1tpXSkKICB9Cn0KCmRlY2sKCmBgYAoKVGhlIG5leHQgc2VjdGlvbiByYW5kb21seSBkZWFscyBjYXJkcyBiZXR3ZWVuIHggcGxheWVycy4KCmBgYHtyIERlYWwgRGVjayBvZiBDYXJkc30KSm8gPC0gYXJyYXkoTkEsIDQpCkRhdmUgPC0gYXJyYXkoTkEsIDQpCldpbGwgPC0gYXJyYXkoTkEsIDQpCkFya2llIDwtIGFycmF5KE5BLCA0KQoKcmFuZG9tbnVtIDwtIGZsb29yKHJ1bmlmICgxLCBtaW4gPSAxLCBtYXggPSBsZW5ndGgoZGVjaykpKQoKZm9yIChwIGluIDE6NCl7CiAgcmFuZG9tbnVtIDwtIGZsb29yKHJ1bmlmICgxLCBtaW4gPSAxLCBtYXggPSBsZW5ndGgoZGVjaykpKQogIEFya2llW3BdIDwtIGRlY2tbcmFuZG9tbnVtXQogIGRlY2sgPC0gZGVja1stcmFuZG9tbnVtXQogIAogIHJhbmRvbW51bSA8LSBmbG9vcihydW5pZiAoMSwgbWluID0gMSwgbWF4ID0gbGVuZ3RoKGRlY2spKSkKICBEYXZlW3BdIDwtIGRlY2tbcmFuZG9tbnVtXQogIGRlY2sgPC0gZGVja1stcmFuZG9tbnVtXQogIAogIHJhbmRvbW51bSA8LSBmbG9vcihydW5pZiAoMSwgbWluID0gMSwgbWF4ID0gbGVuZ3RoKGRlY2spKSkKICBXaWxsW3BdIDwtIGRlY2tbcmFuZG9tbnVtXQogIGRlY2sgPC0gZGVja1stcmFuZG9tbnVtXQogIAogIHJhbmRvbW51bSA8LSBmbG9vcihydW5pZiAoMSwgbWluID0gMSwgbWF4ID0gbGVuZ3RoKGRlY2spKSkKICBKb1twXSA8LSBkZWNrW3JhbmRvbW51bV0KICBkZWNrIDwtIGRlY2tbLXJhbmRvbW51bV0KfQoKQXJraWUKRGF2ZQpKbwpXaWxsCmRlY2sKYGBgCgoKQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkNtZCtPcHRpb24rSSouCgpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkNtZCtTaGlmdCtLKiB0byBwcmV2aWV3IHRoZSBIVE1MIGZpbGUpLiAKClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4KCg==</div>
 
 
 

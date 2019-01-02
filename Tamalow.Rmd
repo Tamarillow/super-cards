@@ -27,23 +27,35 @@ deck
 The next section randomly deals cards between x players.
 
 ```{r Deal Deck of Cards}
-player1 <- array(NA, 4)
-player2 <- array(NA, 4)
+Jo <- array(NA, 4)
+Dave <- array(NA, 4)
+Will <- array(NA, 4)
+Arkie <- array(NA, 4)
 
-randomnum <- floor(runif (1, min = 0, max = length(deck)))
+randomnum <- floor(runif (1, min = 1, max = length(deck)))
 
 for (p in 1:4){
-  randomnum <- floor(runif (1, min = 0, max = length(deck)))
-  player1[p] <- deck[randomnum]
+  randomnum <- floor(runif (1, min = 1, max = length(deck)))
+  Arkie[p] <- deck[randomnum]
   deck <- deck[-randomnum]
   
-  randomnum <- floor(runif (1, min = 0, max = length(deck)))
-  player2[p] <- deck[randomnum]
+  randomnum <- floor(runif (1, min = 1, max = length(deck)))
+  Dave[p] <- deck[randomnum]
+  deck <- deck[-randomnum]
+  
+  randomnum <- floor(runif (1, min = 1, max = length(deck)))
+  Will[p] <- deck[randomnum]
+  deck <- deck[-randomnum]
+  
+  randomnum <- floor(runif (1, min = 1, max = length(deck)))
+  Jo[p] <- deck[randomnum]
   deck <- deck[-randomnum]
 }
 
-player1
-player2
+Arkie
+Dave
+Jo
+Will
 deck
 ```
 
