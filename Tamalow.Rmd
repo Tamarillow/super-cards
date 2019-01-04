@@ -1,5 +1,6 @@
 ---
 title: "Tamalow Card Game"
+runtime: shiny
 output: html_notebook
 ---
 
@@ -8,6 +9,8 @@ This is an R Markdown Notebook that works through the steps to create a digital 
 The first section of code creates an array that represents a fifty two card deck. 
 
 ```{r Create deck of cards}
+
+
 deck <- array(NA, 52)
 houses <- list("Spades","Diamonds","Clubs","Hearts")
 card <- list("Ace of ", "Two of ", "Three of ", "Four of ", "Five of ", "Six of ", "Seven of ", "Eight of ", "Nine of ", "Ten of ", "Jack of ", "Queen of ", "King of ")
@@ -20,17 +23,22 @@ for (i in 1:4){
   }
 }
 
-deck
+
 
 ```
 
 The next section randomly deals cards between x players.
 
 ```{r Deal Deck of Cards}
+
 Jo <- array(NA, 4)
 Dave <- array(NA, 4)
 Will <- array(NA, 4)
 Arkie <- array(NA, 4)
+
+actionButton("deal", label = "Deal Cards")
+
+observeEvent(input$deal,{
 
 randomnum <- floor(runif (1, min = 1, max = length(deck)))
 
@@ -52,11 +60,10 @@ for (p in 1:4){
   deck <- deck[-randomnum]
 }
 
-Arkie
-Dave
-Jo
-Will
-deck
+})
+
+renderText({paste0("Will's hand is ", Will)})
+
 ```
 
 
