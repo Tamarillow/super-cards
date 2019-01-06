@@ -8,10 +8,11 @@ This is an R Markdown Notebook that works through the steps to create a digital 
 
 The first section of code creates an array that represents a fifty two card deck. 
 
-```{r Create deck of cards}
+```{r echo = FALSE, message = FALSE}
 library(shiny)
+library(DT)
+deck <- array(NA,52)
 
-deck <- array(NA, 52)
 houses <- list("Spades","Diamonds","Clubs","Hearts")
 card <- list("Ace of ", "Two of ", "Three of ", "Four of ", "Five of ", "Six of ", "Seven of ", "Eight of ", "Nine of ", "Ten of ", "Jack of ", "Queen of ", "King of ")
 
@@ -24,92 +25,57 @@ for (i in 1:4){
 }
 
 
-
 ```
 
 The next section randomly deals cards between x players.
 
-```{r echo = FALSE}
-library(shiny)
 
-Jo <- array(NA, 4)
-Dave <- array(NA, 4)
-Will <- array(NA, 4)
-Arkie <- array(NA, 4)
+
+```{r echo = FALSE}
+
+
+
 
 actionButton("deal", "Deal Cards")
 
-
-
-hilder <- eventReactive(input$deal, {
-  input$deal
-  
-})
+playerss <- eventReactive(input$deal, {
  
-randomnum <- floor(runif (1, min = 1, max = length(deck)))
-
+  players <<- data.frame("Jo"=1:4,"Dave"=1:4,"Will"=1:4,"Arkie"=1:4)
+   
 for (p in 1:4){
-  randomnum <- floor(runif (1, min = 1, max = length(deck)))
-  Arkie[p] <- deck[randomnum]
-  deck <- deck[-randomnum]
+  randomnum <<- floor(runif (1, min = 1, max = length(deck)))
+  players$Arkie[p] <<- deck[randomnum]
+  deck <<- deck[-randomnum]
   
-  randomnum <- floor(runif (1, min = 1, max = length(deck)))
-  Dave[p] <- deck[randomnum]
-  deck <- deck[-randomnum]
+  randomnum <<- floor(runif (1, min = 1, max = length(deck)))
+  players$Dave[p] <<- deck[randomnum]
+  deck <<- deck[-randomnum]
   
-  randomnum <- floor(runif (1, min = 1, max = length(deck)))
-  Will[p] <- deck[randomnum]
-  deck <- deck[-randomnum]
+  randomnum <<- floor(runif (1, min = 1, max = length(deck)))
+  players$Will[p] <<- deck[randomnum]
+  deck <<- deck[-randomnum]
   
-  randomnum <- floor(runif (1, min = 1, max = length(deck)))
-  Jo[p] <- deck[randomnum]
-  deck <- deck[-randomnum]
+  randomnum <<- floor(runif (1, min = 1, max = length(deck)))
+  players$Jo[p] <<- deck[randomnum]
+  deck <<- deck[-randomnum]
 }
 
-hilder
-
-
-```
-
-
-```{r eruptions, echo=FALSE}
-selectInput(
-  'breaks', label = 'Number of bins:',
-  choices = c(10, 20, 35, 50), selected = 20
+players 
+   
+  
+}
 )
+  
 
-renderPlot({
-  par(mar = c(4, 4, .1, .5))
-  hist(
-    faithful$eruptions, as.numeric(input$breaks),
-    col = 'gray', border = 'white',
-    xlab = 'Duration (minutes)', main = ''
-  )
-})
-```
-
-```{r}
-rm(list = ls())
-library(shiny)
-
-shinyApp(
-  ui=shinyUI(basicPage(
-    actionButton("go", "Go"),
-    numericInput("n", "n", 50),
-    plotOutput("plot")
-  )),
-  server=shinyServer(function(input, output, session){
-
-    randomVals <- eventReactive(input$go, {
-      runif(input$n)
-    })
-
-    output$plot <- renderPlot({
-      hist(randomVals())
-    })
+renderDataTable({
+  playerss()
   })
-)
+
+
 ```
+
+
+
 
 
 
