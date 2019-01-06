@@ -27,13 +27,11 @@ for (i in 1:4){
 
 ```
 
-The next section randomly deals cards between x players.
+The next section randomly deals cards between four named players.
 
 
 
 ```{r echo = FALSE}
-
-
 
 
 actionButton("deal", "Deal Cards")
@@ -59,18 +57,13 @@ for (p in 1:4){
   players$Jo[p] <<- deck[randomnum]
   deck <<- deck[-randomnum]
 }
-
 players 
-   
-  
-}
-)
+})
   
 
 renderDataTable({
   playerss()
   })
-
 
 ```
 
