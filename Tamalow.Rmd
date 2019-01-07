@@ -13,7 +13,7 @@ library(shiny)
 library(DT)
 
 deck <- array(NA,52)
-
+playernames <- list("Jo", "Dave", "Will", "Arkie")
 houses <- list("Spades","Diamonds","Clubs","Hearts")
 card <- list("Ace of ", "Two of ", "Three of ", "Four of ", "Five of ", "Six of ", "Seven of ", "Eight of ", "Nine of ", "Ten of ", "Jack of ", "Queen of ", "King of ")
 
@@ -56,10 +56,10 @@ for (p in 1:4){
 }
 
   randomnum <- floor(runif (1, min = 1, max = length(deck)))
-  reveal <- deck[randomnum]
+  revealed <- deck[randomnum]
   deck <- deck[-randomnum]
   
-  tamallow <- list(players = players, deck = deck, reveal = reveal)
+  tamallow <- list(players = players, deck = deck, revealed = revealed, playernames = playernames)
 
  
 ```
@@ -87,6 +87,30 @@ checkboxGroupInput("DavecheckGroup", label = h3("Dave's Cards"),
     choices = list("Card 1" = 1, "Card 2" = 2, "Card 3" = 3, "Card 4" = 4),
     selected = NULL)
 ```
+
+Using an "End Turn" button to activate next turn.
+
+```{r echo = FALSE}
+nextplayerid <- 1
+
+actionButton("turnend", "End Turn")
+
+nextplayer <- eventReactive(input$turnend,{
+  
+  nextplayerid <- nextplayerid+1
+  
+  if (nextplayerid>length(tamallow$playernames)){
+    nextplayerid <- 1
+  }
+  
+  newplayer <- tamallow$playernames[nextplayerid]
+  
+  newplayer
+})
+
+```
+
+
 
 A series of buttons to run the different plays
 
@@ -128,6 +152,12 @@ renderDataTable({
  
 renderText({
  length(tamallow$deck)
+})
+
+renderPrint({
+  
+  pinkplayer <- nextplayer()
+  pinkplayer
 })
 
 ```
