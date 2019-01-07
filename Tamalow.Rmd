@@ -39,9 +39,9 @@ The next section randomly deals cards between four named players.
 ```{r echo = FALSE}
 
 
-actionButton("deal", "Deal Cards")
 
-#playerss <- eventReactive(input$deal, {
+
+
  
   players <- data.frame("Jo"=1:4,"Dave"=1:4,"Will"=1:4,"Arkie"=1:4)
    
@@ -71,25 +71,13 @@ for (p in 1:4){
 
 
 
-#})
 
- renderDataTable({
-  #chipper <-  playerss()
-  tamallow$players
-   })
+
  
- renderText({
-             #stan <- playerss()
- tamallow$reveal
-})
- 
- 
-renderText({
-             #stan <- playerss()
- length(tamallow$deck)
-})
  
 ```
+
+
 
 Enable players to select the cards that they want to play
 
@@ -114,6 +102,51 @@ checkboxGroupInput("DavecheckGroup", label = h3("Dave's Cards"),
 ```
 
 
+
+```{r echo = FALSE}
+
+actionButton("deal", "Swap")
+
+playerss <- eventReactive(input$deal, {
+
+  pippy <- length(tamallow$reveal)
+  deckcard <- tamallow$reveal[pippy]
+  playercard <- tamallow$players$Dave[as.numeric(input$DavecheckGroup)]
+  tamallow$reveal[pippy] <- playercard
+  tamallow$players$Dave[as.numeric(input$DavecheckGroup)] <- deckcard
+  tamallow
+
+})
+
+
+
+```
+
+
+```{r echo = FALSE}
+renderDataTable({
+  if(input$deal==0){
+  tamallow$players} else{tamallow<-playerss()
+  tamallow$players}
+   })
+ 
+ renderText({
+   
+   if(input$deal==0){
+      
+     tamallow$reveal} else{tamallow<-playerss()
+  tamallow$reveal}
+   
+   
+   
+})
+ 
+ 
+renderText({
+             
+ length(tamallow$deck)
+})
+```
 
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
