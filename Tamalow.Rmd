@@ -37,11 +37,6 @@ The next section randomly deals cards between four named players.
 
 
 ```{r echo = FALSE}
-
-
-
-
-
  
   players <- data.frame("Jo"=1:4,"Dave"=1:4,"Will"=1:4,"Arkie"=1:4)
    
@@ -69,11 +64,6 @@ for (p in 1:4){
   
   tamallow <- list(players = players, deck = deck, reveal = reveal)
 
-
-
-
-
- 
  
 ```
 
@@ -101,7 +91,7 @@ checkboxGroupInput("DavecheckGroup", label = h3("Dave's Cards"),
     selected = NULL)
 ```
 
-
+A series of buttons to run the different plays
 
 ```{r echo = FALSE}
 
@@ -118,12 +108,12 @@ playerss <- eventReactive(input$deal, {
 
 })
 
-
-
 ```
 
+This section creates the viewing output 
 
 ```{r echo = FALSE}
+
 renderDataTable({
   if(input$deal==0){
   tamallow$players} else{tamallow<-playerss()
@@ -136,16 +126,13 @@ renderDataTable({
       
      tamallow$reveal} else{tamallow<-playerss()
   tamallow$reveal}
-   
-   
-   
 })
  
  
 renderText({
-             
  length(tamallow$deck)
 })
+
 ```
 
 
