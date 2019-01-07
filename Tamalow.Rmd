@@ -11,11 +11,8 @@ The first section of code creates an array that represents a fifty two card deck
 ```{r echo = FALSE, message = FALSE}
 library(shiny)
 library(DT)
-#tamallow <- data.frame()
 
 deck <- array(NA,52)
-
-
 
 houses <- list("Spades","Diamonds","Clubs","Hearts")
 card <- list("Ace of ", "Two of ", "Three of ", "Four of ", "Five of ", "Six of ", "Seven of ", "Eight of ", "Nine of ", "Ten of ", "Jack of ", "Queen of ", "King of ")
