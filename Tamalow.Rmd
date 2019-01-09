@@ -88,24 +88,25 @@ checkboxGroupInput("DavecheckGroup", label = h3("Dave's Cards"),
     selected = NULL)
 ```
 
-Using an "End Turn" button to activate next turn.
+Using an "End Turn" button to activate next turn and define whose go is next
 
 ```{r echo = FALSE}
-nextplayerid <- 1
+players <- list(newplayer=playernames[length(playernames)], nextplayerid=length(playernames))
 
 actionButton("turnend", "End Turn")
 
-nextplayer <- eventReactive(input$turnend,{
+nextplayer <- eventReactive(input$turnend, {
   
-  nextplayerid <- nextplayerid+1
+  #if(input$turnend<1){nextplayerid <- nextplayerid+1}else {nextplayerid <- players$nextplayerid + 1 }
+  players$nextplayerid <- players$nextplayerid + 1
   
-  if (nextplayerid>length(tamallow$playernames)){
-    nextplayerid <- 1
+  if (players$nextplayerid>length(tamallow$playernames)){
+    players$nextplayerid <- 1
   }
   
-  newplayer <- tamallow$playernames[nextplayerid]
+ players$newplayer <- playernames[as.numeric(players$nextplayerid)]
   
-  newplayer
+  players
 })
 
 ```
@@ -156,8 +157,8 @@ renderText({
 
 renderPrint({
   
-  pinkplayer <- nextplayer()
-  pinkplayer
+ players <<- nextplayer()
+  players$newplayer[[1]]
 })
 
 ```
