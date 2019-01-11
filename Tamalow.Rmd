@@ -14,8 +14,8 @@ library(DT)
 
 deck <- array(NA,52)
 playernames <- list("Jo", "Dave", "Will", "Arkie")
-houses <- list("Spades","Diamonds","Clubs","Hearts")
-card <- list("Ace of ", "Two of ", "Three of ", "Four of ", "Five of ", "Six of ", "Seven of ", "Eight of ", "Nine of ", "Ten of ", "Jack of ", "Queen of ", "King of ")
+houses <- list("S","D","C","H")
+card <- list("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K")
 
 t <- 0
 for (i in 1:4){
@@ -69,23 +69,42 @@ for (p in 1:4){
 Enable players to select the cards that they want to play
 
 ```{r echo = FALSE}
+selectInput("option", label = h3("Play Choice"),
+            choices = list("Select Card From Deck" = 1, "Select Card From Throwaway Pile" = 2, "Play Rule Card" =  3), 
+            multiple = FALSE, selected = NULL)
 
-
-checkboxGroupInput("JocheckGroup", label = h3("Jo's Cards"), 
+conditionalPanel(
+  condition = "input.option == 1",
+  checkboxGroupInput("JocheckGroup", label = h3("Jo's Cards"), 
     choices = list("Card 1" = 1, "Card 2" = 2, "Card 3" = 3, "Card 4" = 4),
     selected = NULL)
+)
 
-checkboxGroupInput("ArkiecheckGroup", label = h3("Arkie's Cards"), 
-    choices = list("Card 1" = 1, "Card 2" = 2, "Card 3" = 3, "Card 4" = 4),
-    selected = NULL)
+# observeEvent(input$option,{
+#   if(input$option == 1){ 
+#     print(10)
+#     checkboxGroupInput("JocheckGroup", label = h3("Jo's Cards"), 
+#     choices = list("Card 1" = 1, "Card 2" = 2, "Card 3" = 3, "Card 4" = 4),
+#     selected = NULL)}else{}
+  
+  
+#} )
 
-checkboxGroupInput("WillcheckGroup", label = h3("Will's Cards"), 
-    choices = list("Card 1" = 1, "Card 2" = 2, "Card 3" = 3, "Card 4" = 4),
-    selected = NULL)
-
-checkboxGroupInput("DavecheckGroup", label = h3("Dave's Cards"), 
-    choices = list("Card 1" = 1, "Card 2" = 2, "Card 3" = 3, "Card 4" = 4),
-    selected = NULL)
+# checkboxGroupInput("JocheckGroup", label = h3("Jo's Cards"), 
+#     choices = list("Card 1" = 1, "Card 2" = 2, "Card 3" = 3, "Card 4" = 4),
+#     selected = NULL)
+# 
+# checkboxGroupInput("ArkiecheckGroup", label = h3("Arkie's Cards"), 
+#     choices = list("Card 1" = 1, "Card 2" = 2, "Card 3" = 3, "Card 4" = 4),
+#     selected = NULL)
+# 
+# checkboxGroupInput("WillcheckGroup", label = h3("Will's Cards"), 
+#     choices = list("Card 1" = 1, "Card 2" = 2, "Card 3" = 3, "Card 4" = 4),
+#     selected = NULL)
+# 
+# checkboxGroupInput("DavecheckGroup", label = h3("Dave's Cards"), 
+#     choices = list("Card 1" = 1, "Card 2" = 2, "Card 3" = 3, "Card 4" = 4),
+#     selected = NULL)
 ```
 
 Using an "End Turn" button to activate next turn and define whose go is next
@@ -130,11 +149,58 @@ playerss <- eventReactive(input$deal, {
 
 })
 
+
+
 ```
+
+
 
 This section creates the viewing output 
 
 ```{r echo = FALSE}
+jack <<- "PNG/green_back.png"
+
+#jack <- eventReactive(input$JocheckGroup, {if(input$JocheckGroup==2){"PNG/green_back.png"}else {"PNG/red_back.png"}})
+
+#observeEvent(input$JocheckGroup, { if(input$JocheckGroup==2){jack <<-"PNG/green_back.png"}else {jack <- "PNG/red_back.png"}})
+
+fluidRow(column (3, renderImage({
+  return(list(
+        click = "turn",
+        width = 150,
+        src = jack,
+        contentType = "image/png",
+        alt = "Card"
+      ))
+ }, deleteFile = FALSE )),
+
+ column(3,
+renderImage({
+  return(list(
+        width = 150,
+        src = "PNG/red_back.png",
+        contentType = "image/png",
+        alt = "Card"
+      ))
+ }, deleteFile = FALSE )),
+column(3,
+renderImage({
+  return(list(
+        width = 150,
+        src = paste0("PNG/",tamallow$players$Jo[3], ".png"),
+        contentType = "image/png",
+        alt = "Card"
+      ))
+ }, deleteFile = FALSE )), 
+column(3,
+renderImage({
+  return(list(
+        width = 150,
+        src = paste0("PNG/",tamallow$players$Jo[4], ".png"),
+        contentType = "image/png",
+        alt = "Card"
+      ))
+ }, deleteFile = FALSE )) )
 
 renderDataTable({
   if(input$deal==0){
@@ -160,6 +226,13 @@ renderPrint({
  players <<- nextplayer()
   players$newplayer[[1]]
 })
+
+```
+
+
+```{r echo = FALSE}
+
+
 
 ```
 
