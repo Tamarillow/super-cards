@@ -25,12 +25,13 @@ for (i in 1:4){
   }
 }
 
-deck2 <- deck
+
 
 ```
 
-The next section randomly deals cards between four named players.
+The next section randomly deals cards between four named players and creates the Tallow object that holds the information for the game. Each players cards form a dataframe then the reveal and deck are also contained and a seperate list of the player names. At this stage we are trying to run plays with full view of cards to track how the game progresses and ensure the correct plays occur when plays are activated.
 
+Eventually this information will be contained in an external database. The database will hold information on the game and the players in the game, the cards, what has been dealt and where the game is upto. The player login will be used as an environmental variable that will be used to restrict access to certain information. The login will allow initial viewing of the two cards for each person on a separate device. It will also restrict access to the player whose turn it is to see and interact.
 
 
 ```{r echo = FALSE}
@@ -56,10 +57,10 @@ for (p in 1:4){
 }
 
   randomnum <- floor(runif (1, min = 1, max = length(deck)))
-  revealed <- deck[randomnum]
+  reveal <- deck[randomnum]
   deck <- deck[-randomnum]
   
-  tamallow <- list(players = players, deck = deck, revealed = revealed, playernames = playernames)
+  tamallow <- list(players = players, deck = deck, reveal = reveal, playernames = playernames)
 
  
 ```
@@ -111,8 +112,9 @@ Using an "End Turn" button to activate next turn and define whose go is next
 
 ```{r echo = FALSE}
 players <- list(newplayer=playernames[length(playernames)], nextplayerid=length(playernames))
-
-actionButton("turnend", "End Turn")
+players$nextplayerid <- 1
+players$newplayer <- playernames[as.numeric(players$nextplayerid)]
+actionButton("turnend", "End Turn and Play Selection")
 
 nextplayer <- eventReactive(input$turnend, {
   
@@ -136,9 +138,9 @@ A series of buttons to run the different plays
 
 ```{r echo = FALSE}
 
-actionButton("deal", "Swap")
-
-playerss <- eventReactive(input$deal, {
+# actionButton("deal", "Swap")
+# 
+playerss <- eventReactive(input$turnend, {
 
   pippy <- length(tamallow$reveal)
   deckcard <- tamallow$reveal[pippy]
@@ -153,22 +155,47 @@ playerss <- eventReactive(input$deal, {
 
 ```
 
-
-
-This section creates the viewing output 
+Deck Card and Upturned Card
 
 ```{r echo = FALSE}
-jack <<- "PNG/green_back.png"
+fluidRow(column (3, renderImage({
+  return(list(
+        click = "turn",
+        width = "150",
+        src = "PNG/red_back.png",
+        contentType = "image/png",
+        alt = "Card"
+      ))
+ }, deleteFile = FALSE ))
+ 
+)
+```
 
-#jack <- eventReactive(input$JocheckGroup, {if(input$JocheckGroup==2){"PNG/green_back.png"}else {"PNG/red_back.png"}})
 
-#observeEvent(input$JocheckGroup, { if(input$JocheckGroup==2){jack <<-"PNG/green_back.png"}else {jack <- "PNG/red_back.png"}})
+This section creates the viewing output for the player whose turn it is
+
+<font size="11">Name of player whose turn it is:</font>
+
+```{r echo = FALSE}
+
+h3(renderText({
+  if (input$turnend == 0){as.character(players$newplayer[[1]])}else{
+ players <<- nextplayer()
+  chipper <<- as.character(players$newplayer[[1]])
+
+  chipper}
+}))
+```
+
+<font size="11">Cards:</font>
+
+```{r echo = FALSE}
 
 fluidRow(column (3, renderImage({
   return(list(
         click = "turn",
         width = 150,
-        src = jack,
+        src = "PNG/red_back.png",
         contentType = "image/png",
         alt = "Card"
       ))
@@ -184,33 +211,32 @@ renderImage({
       ))
  }, deleteFile = FALSE )),
 column(3,
-renderImage({
+renderImage({ card3 <- nextplayer()
   return(list(
         width = 150,
-        src = paste0("PNG/",tamallow$players$Jo[3], ".png"),
+        src = paste0("PNG/",tamallow$players[3,card3$nextplayerid], ".png"),
         contentType = "image/png",
         alt = "Card"
       ))
  }, deleteFile = FALSE )), 
 column(3,
-renderImage({
+renderImage({ card4 <- nextplayer()
   return(list(
         width = 150,
-        src = paste0("PNG/",tamallow$players$Jo[4], ".png"),
+        src = paste0("PNG/",tamallow$players[4,card4$nextplayerid], ".png"),
         contentType = "image/png",
         alt = "Card"
       ))
  }, deleteFile = FALSE )) )
 
 renderDataTable({
-  if(input$deal==0){
-  tamallow$players} else{tamallow<-playerss()
-  tamallow$players}
+  
+  tamallow$players
    })
  
  renderText({
    
-   if(input$deal==0){
+   if(input$turnend==0){
       
      tamallow$reveal} else{tamallow<-playerss()
   tamallow$reveal}
@@ -221,11 +247,7 @@ renderText({
  length(tamallow$deck)
 })
 
-renderPrint({
-  
- players <<- nextplayer()
-  players$newplayer[[1]]
-})
+
 
 ```
 
