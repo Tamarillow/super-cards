@@ -136,6 +136,8 @@ nextplayer <- eventReactive(input$turnend, {
 
 A series of buttons to run the different plays
 
+This section needs to create a pile to generate a reveal card.
+
 ```{r echo = FALSE}
 
 # actionButton("deal", "Swap")
